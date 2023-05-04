@@ -25,13 +25,15 @@
   "sideEffects": false,
   "license": "ISC",
   "dependencies": {
+    "@codemirror/history": "^0.19.2",
     "@codemirror/language": "^6.0.0",
-    "@nextjournal/lezer-clojure": "1.0.0"
+    "@nextjournal/lezer-clojure": "1.0.0",
+    "process": "^0.11.10"
   },
   "devDependencies": {
     "@codemirror/buildhelper": "^0.1.0",
-    "vite": "^3.1.0",
-    "codemirror": "6.0.1"
+    "codemirror": "6.0.1",
+    "vite": "^3.1.0"
   },
   "repository": {
     "type": "git",

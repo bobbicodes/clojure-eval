@@ -4,6 +4,7 @@
 
  :dependencies
  []
+ :deps true
  :dev-http {8080 "public"}
  :builds
  {:app
