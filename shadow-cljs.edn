@@ -11,6 +11,5 @@
   {:target :esm
    :output-dir "public/js"
    :modules {:clojure {:exports {clojure clojure-eval.clojure/clojure
-                                 viewer clojure-eval.extensions.sci/viewer
                                  clojureEval clojure-eval.extensions.sci/clojure-eval
                                  clojureLanguage clojure-eval.clojure/clojure-language}}}}}}

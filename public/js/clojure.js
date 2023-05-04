@@ -375,7 +375,6 @@ SHADOW_ENV.setLoaded("clojure_eval.clojure.js");
 import "./cljs-runtime/shadow.module.clojure.append.js";
 SHADOW_ENV.setLoaded("shadow.module.clojure.append.js");
 export let clojure = clojure_eval.clojure.clojure;
-export let viewer = clojure_eval.extensions.sci.viewer;
 export let clojureEval = clojure_eval.extensions.sci.clojure_eval;
 export let clojureLanguage = clojure_eval.clojure.clojure_language;
 

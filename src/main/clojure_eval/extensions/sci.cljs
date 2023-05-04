@@ -86,7 +86,3 @@
          ]))
 
 (defn clojure-eval [] extension)
-
-(def viewer
-  (view/EditorView. #js {:extensions #js [(extension)]
-                         :parent (.querySelector js/document "#app")}))
