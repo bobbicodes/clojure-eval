@@ -85,4 +85,4 @@
          ;{:key "Enter" :run clear-eval}
          ]))
 
-(defn clojure-eval [] extension)
+(defn clojure-eval [] (extension))
