@@ -1,7 +1,7 @@
 
 
-import "./cljs-runtime/shadow.module.demo.prepend.js";
-SHADOW_ENV.setLoaded("shadow.module.demo.prepend.js");
+import "./cljs-runtime/shadow.module.clojure.prepend.js";
+SHADOW_ENV.setLoaded("shadow.module.clojure.prepend.js");
 import "./cljs-runtime/goog.debug.error.js";
 SHADOW_ENV.setLoaded("goog.debug.error.js");
 import "./cljs-runtime/goog.dom.nodetype.js";
@@ -234,10 +234,11 @@ import "./cljs-runtime/shadow.cljs.devtools.client.websocket.js";
 SHADOW_ENV.setLoaded("shadow.cljs.devtools.client.websocket.js");
 import "./cljs-runtime/shadow.cljs.devtools.client.browser.js";
 SHADOW_ENV.setLoaded("shadow.cljs.devtools.client.browser.js");
-import "./cljs-runtime/clojure_eval.app.js";
-SHADOW_ENV.setLoaded("clojure_eval.app.js");
-import "./cljs-runtime/shadow.module.demo.append.js";
-SHADOW_ENV.setLoaded("shadow.module.demo.append.js");
-export let foo = clojure_eval.app.foo;
+import "./cljs-runtime/clojure_eval.clojure.js";
+SHADOW_ENV.setLoaded("clojure_eval.clojure.js");
+import "./cljs-runtime/shadow.module.clojure.append.js";
+SHADOW_ENV.setLoaded("shadow.module.clojure.append.js");
+export let clojure = clojure_eval.clojure.clojure;
+export let clojureLanguage = clojure_eval.clojure.clojure_language;
 
-shadow.cljs.devtools.client.env.module_loaded("demo");
+shadow.cljs.devtools.client.env.module_loaded("clojure");

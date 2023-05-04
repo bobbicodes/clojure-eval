@@ -9,4 +9,5 @@
  {:app
   {:target :esm
    :output-dir "public/js"
-   :modules {:demo {:exports {foo clojure-eval.app/foo}}}}}}
+   :modules {:clojure {:exports {clojure clojure-eval.clojure/clojure
+                                 clojureLanguage clojure-eval.clojure/clojure-language}}}}}}

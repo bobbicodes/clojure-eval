@@ -1,12 +1,12 @@
 import './style.css'
 import {EditorView, basicSetup, minimalSetup} from 'codemirror'
-import {clojure, clojureLanguage} from './../src/clojure.ts'
-import {foo} from './../public/js/demo.js'
+import {c, cLanguage} from './../src/clojure.ts'
+import {clojure} from './../public/js/clojure.js'
 
-console.log(clojure, clojureLanguage)
-console.log(foo())
+console.log(c, cLanguage)
+console.log(clojure())
 
 new EditorView({
-  extensions: [basicSetup, clojure()],
+  extensions: [basicSetup, c()],
   parent: document.querySelector('#app')
 }).focus()

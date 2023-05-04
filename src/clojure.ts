@@ -11,7 +11,7 @@ const {coll} = props
 // debug
 // const nodeText = (state, node: SyntaxNode) => { return state.doc.sliceString(node.from, node.to) }
 
-export const clojureLanguage = LRLanguage.define({
+export const cLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [styleTags({NS: tags.keyword,
                        DefLike: tags.keyword,
@@ -51,6 +51,6 @@ export const clojureLanguage = LRLanguage.define({
 
   languageData: {commentTokens: {line: ";;"}}})
 
-export function clojure() {
-  return new LanguageSupport(clojureLanguage)
+export function c() {
+  return new LanguageSupport(cLanguage)
 }
