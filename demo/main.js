@@ -1,12 +1,10 @@
 import './style.css'
-import {EditorView, basicSetup, minimalSetup} from 'codemirror'
-import {c, cLanguage} from './../src/clojure.ts'
-import {clojure} from './../public/js/clojure.js'
+import {EditorView, basicSetup} from 'codemirror'
+import {keymap} from '@codemirror/view'
+//import {c, cLanguage} from './../src/clojure.ts'
+import {clojure, clojureLanguage, clojureEval, viewer} from './../public/js/clojure.js'
 
-console.log(c, cLanguage)
-console.log(clojure())
+//console.log(c(), cLanguage)
+//console.log(clojureEval)
 
-new EditorView({
-  extensions: [basicSetup, c()],
-  parent: document.querySelector('#app')
-}).focus()
+viewer.focus

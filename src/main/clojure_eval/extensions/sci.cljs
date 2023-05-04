@@ -1,12 +1,14 @@
 (ns clojure-eval.extensions.sci
   (:require ["@codemirror/view" :as view]
+            [codemirror :refer [basicSetup]]
             [applied-science.js-interop :as j]
             [clojure-eval.extensions.eval-region :as eval-region]
             [sci.core :as sci]
             [sci.impl.evaluator]
             [clojure.string :as str]))
 
-(defonce !viewer (atom ""))
+(declare viewer)
+
 (defonce last-result (atom ""))
  
 (defonce context
@@ -23,13 +25,13 @@
 (defonce eval-tail (atom nil))
 
 (defn update-editor! [text cursor-pos]
-  (let [end (count (some-> @!viewer .-state .-doc str))]
-    (.dispatch @!viewer #js{:changes #js{:from 0 :to end :insert text}
+  (let [end (count (some-> viewer .-state .-doc str))]
+    (.dispatch viewer #js{:changes #js{:from 0 :to end :insert text}
                             :selection #js{:anchor cursor-pos :head cursor-pos}})))
 
 (j/defn eval-at-cursor [on-result ^:js {:keys [state]}]
-  (let [cursor-pos (some-> @!viewer .-state .-selection .-main .-head)
-        code (first (str/split (str (some-> @!viewer .-state .-doc str)) #" => "))]
+  (let [cursor-pos (some-> viewer .-state .-selection .-main .-head)
+        code (first (str/split (str (some-> viewer .-state .-doc str)) #" => "))]
     (some->> (eval-region/cursor-node-string state)
              (eval-string)
              (on-result))
@@ -38,7 +40,7 @@
                          (:result @last-result)
                          (reset! eval-tail (subs code cursor-pos (count code))))
                     cursor-pos)
-    (.dispatch @!viewer 
+    (.dispatch viewer 
                #js{:selection #js{:anchor cursor-pos
                                   :head   cursor-pos}}))
   true)
@@ -58,18 +60,17 @@
 (defn clear-eval []
   (when (not= "" @last-result)
     (reset! last-result "")
-    (let [code (-> @!viewer
+    (let [code (-> viewer
                    (some-> .-state .-doc str)
                    str
                    (str/split #" => ")
                    first
                    (str @eval-tail))
-          cursor-pos (some-> @!viewer .-state .-selection .-main .-head)]
+          cursor-pos (some-> viewer .-state .-selection .-main .-head)]
       (update-editor! code (min cursor-pos (count code))))))
 
 (defn extension []
-  (.of view/keymap
-       (j/lit
+  (j/lit
         [{:key "Alt-Enter"
           :run (partial eval-cell (fn [result] (reset! last-result result)))}
          {:key  "Mod-Enter"
@@ -82,4 +83,10 @@
          {:key "ArrowUp" :run clear-eval}
          {:key "ArrowDown" :run clear-eval}
          ;{:key "Enter" :run clear-eval}
-         ])))
+         ]))
+
+(defn clojure-eval [] extension)
+
+(def viewer
+  (view/EditorView. #js {:extensions #js [(extension)]
+                         :parent (.querySelector js/document "#app")}))

@@ -1,4 +1,4 @@
-import {parser, props} from "@nextjournal/lezer-clojure"
+import {parser} from "@nextjournal/lezer-clojure"
 import {NodeProp, SyntaxNode, NodeType} from "@lezer/common"
 import {styleTags, tags} from "@lezer/highlight"
 import {indentNodeProp, foldNodeProp, foldInside, LRLanguage, LanguageSupport, TreeIndentContext} from "@codemirror/language"
@@ -6,7 +6,6 @@ import {indentNodeProp, foldNodeProp, foldInside, LRLanguage, LanguageSupport, T
 /// A language provider based on the [Lezer Clojure](https://github.com/nextjournal/lezer-clojure), extended with
 /// highlighting and indentation information.
 
-const {coll} = props
 
 // debug
 // const nodeText = (state, node: SyntaxNode) => { return state.doc.sliceString(node.from, node.to) }
