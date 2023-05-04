@@ -1,5 +1,4 @@
 node_modules
-dist
-.idea
-out
-nextjournal-lang-clojure-*.tgz
+.shadow-cljs/
+public/js/cljs-runtime/
+.calva/
